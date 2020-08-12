@@ -1,1 +1,288 @@
 # pysta-UISounds
+
+
+```
+3rd_party_critical.caf
+ReceivedMessage.caf
+RingerChanged.caf
+SIMToolkitCallDropped.caf
+SIMToolkitGeneralBeep.caf
+SIMToolkitNegativeACK.caf
+SIMToolkitPositiveACK.caf
+SIMToolkitSMS.caf
+SentMessage.caf
+Swish.caf
+Tink.caf
+Tock.caf
+access_scan_complete.caf
+acknowledgment_received.caf
+acknowledgment_sent.caf
+alarm.caf
+begin_record.caf
+camera_timer_countdown.caf
+camera_timer_final_second.caf
+connect_power.caf
+ct-busy.caf
+ct-congestion.caf
+ct-error.caf
+ct-keytone2.caf
+ct-path-ack.caf
+end_record.caf
+focus_change_app_icon.caf
+focus_change_keyboard.caf
+focus_change_large.caf
+focus_change_small.caf
+go_to_sleep_alert.caf
+health_notification.caf
+jbl_ambiguous.caf
+jbl_begin.caf
+jbl_cancel.caf
+jbl_confirm.caf
+jbl_no_match.caf
+key_press_click.caf
+key_press_delete.caf
+key_press_modifier.caf
+keyboard_press_clear.caf
+keyboard_press_delete.caf
+keyboard_press_normal.caf
+lock.caf
+long_low_short_high.caf
+low_power.caf
+mail-sent.caf
+middle_9_short_double_low.caf
+multiway_invitation.caf
+navigation_pop.caf
+navigation_push.caf
+new-mail.caf
+nfc_scan_complete.caf
+payment_failure.caf
+payment_success.caf
+photoShutter.caf
+shake.caf
+short_double_high.caf
+short_double_low.caf
+short_low_high.caf
+sms-received1.caf
+sms-received2.caf
+sms-received3.caf
+sms-received4.caf
+sms-received5.caf
+sms-received6.caf
+tweet_sent.caf
+ussd.caf
+warsaw.caf
+wheels_of_time.caf
+
+Modern/
+  camera_shutter_burst.caf
+  camera_shutter_burst_begin.caf
+  camera_shutter_burst_end.caf
+
+nano/
+  3rdParty_DirectionDown_Haptic.caf
+  3rdParty_DirectionUp_Haptic.caf
+  3rdParty_Failure_Haptic.caf
+  3rdParty_Retry_Haptic.caf
+  3rdParty_Start_Haptic.caf
+  3rdParty_Stop_Haptic.caf
+  3rdParty_Success_Haptic.caf
+  3rd_Party_Critical_Haptic.caf
+  AccessScanComplete_Haptic.caf
+  Acknowledgement_Exclamation.caf
+  Acknowledgement_Haha.caf
+  Acknowledgement_Heart.caf
+  Acknowledgement_QuestionMark.caf
+  Acknowledgement_ThumbsDown.caf
+  Acknowledgement_ThumbsUp.caf
+  Alarm_Haptic.caf
+  Alarm_Nightstand_Haptic.caf
+  Alert_1stParty_Haptic.caf
+  Alert_3rdParty_Haptic.caf
+  Alert_3rdParty_Salient_Haptic.caf
+  Alert_ActivityFriendsGoalAttained_Haptic.caf
+  Alert_ActivityGoalAttained_Haptic.caf
+  Alert_ActivityGoalAttained_Salient_Haptic.caf
+  Alert_ActivityGoalBehind_Haptic.caf
+  Alert_ActivityGoalBehind_Salient_Haptic.caf
+  Alert_ActivityGoalClose_Haptic.caf
+  Alert_BatteryLow_10p_Haptic.caf
+  Alert_BatteryLow_5p_Haptic.caf
+  Alert_BatteryLow_5p_Salient_Haptic.caf
+  Alert_Calendar_Haptic.caf
+  Alert_Calendar_Salient_Haptic.caf
+  Alert_Health_Haptic.caf
+  Alert_Mail_Haptic.caf
+  Alert_Mail_Salient_Haptic.caf
+  Alert_MapsDirectionsInApp_Haptic.caf
+  Alert_Messages_1_Haptic.caf
+  Alert_Messages_1_Salient_Haptic.caf
+  Alert_Messages_2_Haptic.caf
+  Alert_Messages_3_Haptic.caf
+  Alert_PassbookBalance_Haptic.caf
+  Alert_PassbookGeofence_Haptic.caf
+  Alert_PassbookGeofence_Salient_Haptic.caf
+  Alert_PhotostreamActivity_Haptic.caf
+  Alert_ReminderDue_Haptic.caf
+  Alert_ReminderDue_Salient_Haptic.caf
+  Alert_SpartanConnected_LowLatency_Haptic.caf
+  Alert_SpartanConnecting_Haptic.caf
+  Alert_SpartanConnecting_LowLatency_Haptic.caf
+  Alert_SpartanDisconnected_LowLatency_Haptic.caf
+  Alert_Voicemail_Haptic.caf
+  Alert_Voicemail_Salient_Haptic.caf
+  Alert_WalkieTalkie_Haptic.caf
+  AutoUnlock_Haptic.caf
+  BatteryMagsafe_Haptic.caf
+  Beat_Haptic.caf
+  BuddyMigrationStart_Haptic.caf
+  BuddyPairingFailure_Haptic.caf
+  BuddyPairingRemoteConnection_Haptic.caf
+  BuddyPairingRemoteTap_Haptic.caf
+  BuddyPairingSuccess_Haptic.caf
+  CameraCountdownImminent_Haptic.caf
+  CameraCountdownTick_Haptic.caf
+  CameraShutter_Haptic.caf
+  Detent_Haptic.caf
+  DoNotDisturb_Haptic.caf
+  ET_BeginNotification_Haptic.caf
+  ET_BeginNotification_Salient_Haptic.caf
+  ET_RemoteTap_Receive_Haptic.caf
+  ET_RemoteTap_Send_Haptic.caf
+  GoToSleep_Haptic.caf
+  HourlyChime_Haptic.caf
+  HummingbirdCompletion_Haptic.caf
+  HummingbirdNotification_Haptic.caf
+  MessagesIncoming_Haptic.caf
+  MessagesOutgoing_Haptic.caf
+  MultiwayInvitation.caf
+  MultiwayJoin.caf
+  MultiwayLeave.caf
+  NavigationGenericManeuver_Haptic.caf
+  NavigationGenericManeuver_Salient_Haptic.caf
+  NavigationLeftTurn_Haptic.caf
+  NavigationLeftTurn_Salient_Haptic.caf
+  NavigationRightTurn_Haptic.caf
+  NavigationRightTurn_Salient_Haptic.caf
+  Notification_Haptic.caf
+  Notification_Salient_Haptic.caf
+  OnOffPasscodeFailure_Haptic.caf
+  OnOffPasscodeUnlockCampanion_Haptic.caf
+  OnOffPasscodeUnlock_Haptic.caf
+  OrbExit_Haptic.caf
+  OrbLayers_Haptic.caf
+  PhoneAnswer_Haptic.caf
+  PhoneHangUp_Haptic.caf
+  PhoneHold_Haptic.caf
+  PhotosZoomDetent_Haptic.caf
+  Preview_AudioAndHaptic.caf
+  QB_Dictation_Haptic.caf
+  QB_Dictation_Off_Haptic.caf
+  RemoteCameraShutterBurstBegin_Haptic.caf
+  RemoteCameraShutterBurstEnd_Haptic.caf
+  RingtoneDucked_UK_Haptic.caf
+  RingtoneDucked_US_Haptic.caf
+  Ringtone_2_Ducked_Haptic-sashimi.caf
+  Ringtone_2_Haptic-sashimi.caf
+  Ringtone_UK_Haptic.caf
+  Ringtone_US_Haptic.caf
+  SOSEmergencyContactTextPrompt_Haptic.caf
+  SOSFallDetectionPromptEscalation_Haptic.caf
+  SOSFallDetectionPrompt_Haptic.caf
+  SalientNotification_Haptic.caf
+  SedentaryTimer_Haptic.caf
+  SedentaryTimer_Salient_Haptic.caf
+  SiriAutoSend_Haptic.caf
+  SiriStart_Haptic.caf
+  SiriStopFailure_Haptic.caf
+  SiriStopSuccess_Haptic.caf
+  StockholmActiveSingleCycle_Haptic.caf
+  StockholmActive_Haptic.caf
+  StockholmFailure_Haptic.caf
+  Stockholm_Haptic.caf
+  StopwatchLap_Haptic.caf
+  StopwatchReset_Haptic.caf
+  StopwatchStart_Haptic.caf
+  StopwatchStop_Haptic.caf
+  SwTest1_Haptic.caf
+  SystemStartup_Haptic.caf
+  System_Notification_Haptic.caf
+  TimerCancel_Haptic.caf
+  TimerPause_Haptic.caf
+  TimerStart_Haptic.caf
+  TimerWheelHoursDetent_Haptic.caf
+  TimerWheelMinutesDetent_Haptic.caf
+  Timer_Haptic.caf
+  UISwipe_Haptic.caf
+  UISwitch_Off_Haptic.caf
+  UISwitch_On_Haptic.caf
+  VoiceOver_Click_Haptic.caf
+  WalkieTalkieActiveEnd_Haptic.caf
+  WalkieTalkieActiveStart_Haptic.caf
+  WalkieTalkieReceiveEnd_Haptic.caf
+  WalkieTalkieReceiveStart_Haptic.caf
+  Warsaw_Haptic.caf
+  WorkoutCompleteAutodetect.caf
+  WorkoutComplete_Haptic.caf
+  WorkoutCountdown_Haptic.caf
+  WorkoutPaceAbove.caf
+  WorkoutPaceBelow.caf
+  WorkoutPausedAutoDetect.caf
+  WorkoutPaused_Haptic.caf
+  WorkoutPressStart_Haptic.caf
+  WorkoutResumedAutoDetect.caf
+  WorkoutResumed_Haptic.caf
+  WorkoutSaved_Haptic.caf
+  WorkoutSelect_Haptic.caf
+  WorkoutStartAutodetect.caf
+  busy_tone_ansi.caf
+  busy_tone_cept.caf
+  call_waiting_tone_ansi.caf
+  call_waiting_tone_cept.caf
+  ct-call-waiting.caf
+  dtmf-0.caf
+  dtmf-1.caf
+  dtmf-2.caf
+  dtmf-3.caf
+  dtmf-4.caf
+  dtmf-5.caf
+  dtmf-6.caf
+  dtmf-7.caf
+  dtmf-8.caf
+  dtmf-9.caf
+  dtmf-pound.caf
+  dtmf-star.caf
+  end_call_tone_cept.caf
+  jbl_begin.caf
+  jbl_cancel.caf
+  jbl_confirm.caf
+  ringback_tone_ansi.caf
+  ringback_tone_aus.caf
+  ringback_tone_cept.caf
+  ringback_tone_hk.caf
+  ringback_tone_uk.caf
+  sms-received1.caf
+  vc~ended.caf
+  vc~invitation-accepted.caf
+  vc~ringing.caf
+  vc~ringing_watch.caf
+
+New/
+  Anticipate.caf
+  Bloom.caf
+  Calypso.caf
+  Choo_Choo.caf
+  Descent.caf
+  Fanfare.caf
+  Ladder.caf
+  Minuet.caf
+  News_Flash.caf
+  Noir.caf
+  Sherwood_Forest.caf
+  Spell.caf
+  Suspense.caf
+  Telegraph.caf
+  Tiptoes.caf
+  Typewriters.caf
+  Update.caf
+
+```
