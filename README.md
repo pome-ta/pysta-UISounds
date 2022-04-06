@@ -1,8 +1,16 @@
 # pysta-UISounds
 
 
+
+```
+--- SYSTEM INFORMATION ---
+**System Information**
+
+* Pythonista 3.3 (330025), Default interpreter 3.6.1
+* iOS 15.3.1, model iPhone12,1, resolution (portrait) 828.0 x 1792.0 @ 2.0
+```
+
 サウンド一覧
- tes
 
 ```
 3rd_party_critical.caf
