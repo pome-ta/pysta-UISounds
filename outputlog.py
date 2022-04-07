@@ -1,11 +1,9 @@
 from pathlib import Path
-from pprint import pprint
 
 root_str = '/System/Library/Audio/UISounds/'
 root_path = Path(root_str)
 
 all_files = list(root_path.glob('**/*.*'))
-
 
 pre_outlog = ''
 for dir_file in all_files:
