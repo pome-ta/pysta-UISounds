@@ -11,12 +11,11 @@ new = 'New'
 
 root_path = root  #/ new  # todo: `/path` で追加
 
-#@ui.in_background
 def get_sounds(call_root_path):
   # xxx: とりあえず、直下ファイル取得
   file_path = call_root_path.iterdir()
   sound_list = [file for file in file_path if not file.is_dir()]
-  print(len(sound_list))
+  #print(len(sound_list))
 
 get_sounds(root_path)
 
