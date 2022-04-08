@@ -2,28 +2,43 @@ from pathlib import Path
 import ui
 import sound
 
-root = Path('/System/Library/Audio/UISounds')
+root_str = '/System/Library/Audio/UISounds/'
+root = Path(root_str)
 
 modern = 'Modern'
 nano = 'nano'
 new = 'New'
 
-root_path = root  # / new
+root_path = root  #/ new  # todo: `/path` で追加
 
 
 class Pad(ui.View):
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
-    self.bg_color = 'slategray'
+    self.default_color = 'slategray'
+    self.active_color = 'maroon'
+    self.bg_color = self.default_color
+
     self.note = None
 
+    self.name_label = ui.Label()
+    self.name_label.number_of_lines = 0
+    self.name_label.font = ('Source Code Pro', 8)
+    self.name_label.flex = 'WH'
+    
+    self.add_subview(self.name_label)
+
+  def layout(self):
+    self.name_label.size_to_fit()
+  
   def touch_began(self, touch):
-    self.bg_color = 'maroon'
+    self.bg_color = self.active_color
     self.note.play()
 
   def touch_ended(self, touch):
-    self.bg_color = 'slategray'
-    #self.note.stop()
+    def animation():
+      self.bg_color = self.default_color
+    ui.animate(animation, duration=0.2)
 
 
 class WrapGrid(ui.View):
@@ -31,14 +46,14 @@ class WrapGrid(ui.View):
     ui.View.__init__(self, *args, **kwargs)
     self.height = g_size
     self.width = g_size
-    self.border_width = 1
-    self.border_color = 1
+    self.border_width = 0.5
+    self.border_color = 0.5
     self.set_pads()
 
   def set_pads(self):
     self.pad = Pad()
-    self.pad.width = self.width * .8
-    self.pad.height = self.height * .8
+    self.pad.width = self.width * .88
+    self.pad.height = self.height * .88
     self.pad.corner_radius = 8
     self.pad.center = self.center
     self.add_subview(self.pad)
@@ -55,27 +70,29 @@ class RackGrid(ui.View):
 
   @ui.in_background
   def set_pads(self):
+    print('fuga')
     file_path = root_path.iterdir()
     sound_list = [file for file in file_path if not file.is_dir()]
     _x, _y, _w, _h = self.frame
     set_size = min(_w, _h) * 0.25
     count = 0
     pad_line = 4
-    for n, x in enumerate(range(64)):
+    for n, file in enumerate(sound_list):
       wrap = WrapGrid(set_size)
       set_y = int(-(-n / pad_line))
       if n % 4 == 0:
         set_x = 0
       wrap.x = set_size * set_x
       wrap.y = set_size * set_y
-      num = ui.Label()
-      num.text = str(count)
+
+      name = str(file).replace(root_str, '')
+      wrap.pad.name_label.text = f'\n{count}: \n{name}'
+      wrap.pad.note = sound.Player(str(file))
+      self.add_subview(wrap)
+      #self.scroll_view.add_subview(wrap)
+
       set_x += 1
       count += 1
-      wrap.pad.note = sound.Player(str(sound_list[n]))
-      wrap.pad.add_subview(num)
-      #self.scroll_view.add_subview(wrap)
-      self.add_subview(wrap)
 
 
 class MainView(ui.View):
@@ -85,6 +102,9 @@ class MainView(ui.View):
     self.rack = RackGrid()
     self.rack.flex = 'WH'
     self.add_subview(self.rack)
+
+  def layout(self):
+    print('hoge')
 
 
 if __name__ == '__main__':
