@@ -1,23 +1,14 @@
 from pathlib import Path
-import ui
 import sound
+import ui
 
-root_str = '/System/Library/Audio/UISounds/'
-root = Path(root_str)
+GRID_ROW = 4
 
-modern = 'Modern'
-nano = 'nano'
-new = 'New'
 
-root_path = root  #/ new  # todo: `/path` で追加
-
-def get_sounds(call_root_path):
-  # xxx: とりあえず、直下ファイル取得
-  file_path = call_root_path.iterdir()
-  sound_list = [file for file in file_path if not file.is_dir()]
-  #print(len(sound_list))
-
-get_sounds(root_path)
+#@ui.in_background
+def get_items(items):
+  file_path = items.iterdir()
+  return [file for file in file_path if not file.is_dir()]
 
 
 class Pad(ui.View):
@@ -27,100 +18,114 @@ class Pad(ui.View):
     self.active_color = 'maroon'
     self.bg_color = self.default_color
     self.corner_radius = 8
-    
+
     self.name_label = ui.Label()
     self.name_label.number_of_lines = 0
     self.name_label.font = ('Source Code Pro', 8)
     self.name_label.flex = 'WH'
     self.add_subview(self.name_label)
+
     self.note = None
 
-  def layout(self):
-    #self.height = self.superview.height * 0.88
-    #self.width = self.superview.width * 0.88
-    #self.center = self.superview.center
-    self.name_label.size_to_fit()
+  def set_up(self, file_path):
+    path = f'{file_path}'
+    self.name_label.text = path
+    self.note = sound.Player(path)
 
   def touch_began(self, touch):
     self.bg_color = self.active_color
     self.note.play()
 
   def touch_ended(self, touch):
+    '''
     def animation():
       self.bg_color = self.default_color
-
     ui.animate(animation, duration=0.2)
+    '''
+    self.bg_color = self.default_color
 
 
 class WrapGrid(ui.View):
-  def __init__(self, g_size, *args, **kwargs):
+  def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
-    self.height = g_size
-    self.width = g_size
-    self.border_width = 0.5
-    self.border_color = 0.5
-    self.set_pad()
-
-  def set_pad(self):
+    self.border_width = 0.8
+    self.border_color = 0.8
     self.pad = Pad()
-    self.pad.width = self.width * .88
-    self.pad.height = self.height * .88
-    self.pad.center = self.center
     self.add_subview(self.pad)
-    
+
+  def set_pad(self, file_path):
+    self.pad.set_up(file_path)
+
+  def layout(self):
+    self.pad.height = self.height * 0.88
+    self.pad.width = self.width * 0.88
+    self.pad.center = self.center
 
 
 class RackGrid(ui.View):
+  #@ui.in_background
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
-    self.bg_color = 'steelblue'
+    self.bg_color = 'slategray'
+    self.flex = 'WH'
+
     self.scroll_view = ui.ScrollView()
+    #self.scroll_view.bounces = 0
+    #self.scroll_view.scroll_enabled = 0
+    self.scroll_view.bg_color = 'steelblue'
     self.scroll_view.flex = 'WH'
-    #self.add_subview(self.scroll_view)
-    self.set_pads()
+    self.add_subview(self.scroll_view)
+    #self.set_grid(items)
 
   @ui.in_background
-  def set_pads(self):
-    print('rack')
-    file_path = root_path.iterdir()
-    sound_list = [file for file in file_path if not file.is_dir()]
-    _x, _y, _w, _h = self.frame
-    set_size = min(_w, _h) * 0.25
-    count = 0
-    pad_line = 4
-    for n, file in enumerate(sound_list):
-      wrap = WrapGrid(set_size)
-      set_y = int(-(-n / pad_line))
-      if n % 4 == 0:
-        set_x = 0
-      wrap.x = set_size * set_x
-      wrap.y = set_size * set_y
+  def set_grid(self, item_list):
+    # xxx: 引数を持たせると`ui.in_background` ダメ？
+    items = get_items(item_list)
+    for item in items:
+      grid = WrapGrid()
+      grid.set_pad(item)
+      self.scroll_view.add_subview(grid)
+    # xxx: 同期
+    self.layout()
 
-      name = str(file).replace(root_str, '')
-      wrap.pad.name_label.text = f'\n{count}: \n{name}'
-      wrap.pad.note = sound.Player(str(file))
-      self.add_subview(wrap)
-      #self.scroll_view.add_subview(wrap)
+  def layout(self):
+    _, _, w, h = self.frame
+    set_size = min(w, h) / GRID_ROW
+    height_mult = int(-(-len(self.scroll_view.subviews) // GRID_ROW))
 
+    self.scroll_view.content_size = (self.width, set_size * height_mult)
+
+    for n, sub_view in enumerate(self.scroll_view.subviews):
+      set_x = 0 if n % 4 == 0 else set_x
+      set_y = int(-(-n / GRID_ROW))
+      sub_view.height = sub_view.width = set_size
+      sub_view.x = set_size * set_x
+      sub_view.y = set_size * set_y
       set_x += 1
-      count += 1
+
+  def touch_began(self, touch):
+    print(self.scroll_view.dragging)
 
 
-class MainView(ui.View):
-  def __init__(self, *args, **kwargs):
-    print('init')
+class RootView(ui.View):
+  def __init__(self, items, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
-    self.bg_color = 'red'
+    self.bg_color = 'maroon'
     self.rack = RackGrid()
-    self.rack.flex = 'WH'
+    self.rack.set_grid(items)
     self.add_subview(self.rack)
 
   def layout(self):
-    print('lay')
-    #pass
+    #print(f'layout_root: {self.frame}')
+    pass
 
 
 if __name__ == '__main__':
-  view = MainView()
-  view.present('fullscreen')
+  root_str = '/System/Library/Audio/UISounds/'
+  root_path = Path(root_str)
+
+  root = RootView(root_path)
+
+  #root.present(style='fullscreen', orientations=['portrait'])
+  root.present(style='fullscreen')
 
