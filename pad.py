@@ -4,11 +4,10 @@ import ui
 
 GRID_ROW = 4
 
-
-#@ui.in_background
-def get_items(items):
-  file_path = items.iterdir()
-  return [file for file in file_path if not file.is_dir()]
+def get_sound_paths(paths):
+  #file_path = paths.iterdir()
+  #return [file for file in file_path if not file.is_dir()]
+  return list(paths.glob('**/*.*'))
 
 
 class Pad(ui.View):
@@ -19,13 +18,13 @@ class Pad(ui.View):
     self.bg_color = self.default_color
     self.corner_radius = 8
 
+    self.note = None
+
     self.name_label = ui.Label()
     self.name_label.number_of_lines = 0
-    self.name_label.font = ('Source Code Pro', 8)
+    self.name_label.font = ('Source Code Pro', 10)
     self.name_label.flex = 'WH'
     self.add_subview(self.name_label)
-
-    self.note = None
 
   def set_up(self, file_path):
     path = f'{file_path}'
@@ -33,16 +32,15 @@ class Pad(ui.View):
     self.note = sound.Player(path)
 
   def touch_began(self, touch):
+    # xxx: 色が変わらん
     self.bg_color = self.active_color
     self.note.play()
 
   def touch_ended(self, touch):
-    '''
+    #self.bg_color = self.default_color
     def animation():
       self.bg_color = self.default_color
     ui.animate(animation, duration=0.2)
-    '''
-    self.bg_color = self.default_color
 
 
 class WrapGrid(ui.View):
@@ -60,10 +58,9 @@ class WrapGrid(ui.View):
     self.pad.height = self.height * 0.88
     self.pad.width = self.width * 0.88
     self.pad.center = self.center
-
+    
 
 class RackGrid(ui.View):
-  #@ui.in_background
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.bg_color = 'slategray'
@@ -75,15 +72,13 @@ class RackGrid(ui.View):
     self.scroll_view.bg_color = 'steelblue'
     self.scroll_view.flex = 'WH'
     self.add_subview(self.scroll_view)
-    #self.set_grid(items)
 
   @ui.in_background
-  def set_grid(self, item_list):
-    # xxx: 引数を持たせると`ui.in_background` ダメ？
-    items = get_items(item_list)
-    for item in items:
+  def set_grid(self, sound_path):
+    sound_path_list = get_sound_paths(sound_path)
+    for s_path in sound_path_list:
       grid = WrapGrid()
-      grid.set_pad(item)
+      grid.set_pad(s_path)
       self.scroll_view.add_subview(grid)
     # xxx: 同期
     self.layout()
@@ -108,11 +103,11 @@ class RackGrid(ui.View):
 
 
 class RootView(ui.View):
-  def __init__(self, items, *args, **kwargs):
+  def __init__(self, sound_path, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.bg_color = 'maroon'
     self.rack = RackGrid()
-    self.rack.set_grid(items)
+    self.rack.set_grid(sound_path)
     self.add_subview(self.rack)
 
   def layout(self):
@@ -123,7 +118,6 @@ class RootView(ui.View):
 if __name__ == '__main__':
   root_str = '/System/Library/Audio/UISounds/'
   root_path = Path(root_str)
-
   root = RootView(root_path)
 
   #root.present(style='fullscreen', orientations=['portrait'])
