@@ -11,6 +11,15 @@ new = 'New'
 
 root_path = root  #/ new  # todo: `/path` で追加
 
+#@ui.in_background
+def get_sounds(call_root_path):
+  # xxx: とりあえず、直下ファイル取得
+  file_path = call_root_path.iterdir()
+  sound_list = [file for file in file_path if not file.is_dir()]
+  print(len(sound_list))
+
+get_sounds(root_path)
+
 
 class Pad(ui.View):
   def __init__(self, *args, **kwargs):
@@ -18,19 +27,21 @@ class Pad(ui.View):
     self.default_color = 'slategray'
     self.active_color = 'maroon'
     self.bg_color = self.default_color
-
-    self.note = None
-
+    self.corner_radius = 8
+    
     self.name_label = ui.Label()
     self.name_label.number_of_lines = 0
     self.name_label.font = ('Source Code Pro', 8)
     self.name_label.flex = 'WH'
-    
     self.add_subview(self.name_label)
+    self.note = None
 
   def layout(self):
+    #self.height = self.superview.height * 0.88
+    #self.width = self.superview.width * 0.88
+    #self.center = self.superview.center
     self.name_label.size_to_fit()
-  
+
   def touch_began(self, touch):
     self.bg_color = self.active_color
     self.note.play()
@@ -38,6 +49,7 @@ class Pad(ui.View):
   def touch_ended(self, touch):
     def animation():
       self.bg_color = self.default_color
+
     ui.animate(animation, duration=0.2)
 
 
@@ -48,15 +60,15 @@ class WrapGrid(ui.View):
     self.width = g_size
     self.border_width = 0.5
     self.border_color = 0.5
-    self.set_pads()
+    self.set_pad()
 
-  def set_pads(self):
+  def set_pad(self):
     self.pad = Pad()
     self.pad.width = self.width * .88
     self.pad.height = self.height * .88
-    self.pad.corner_radius = 8
     self.pad.center = self.center
     self.add_subview(self.pad)
+    
 
 
 class RackGrid(ui.View):
@@ -70,7 +82,7 @@ class RackGrid(ui.View):
 
   @ui.in_background
   def set_pads(self):
-    print('fuga')
+    print('rack')
     file_path = root_path.iterdir()
     sound_list = [file for file in file_path if not file.is_dir()]
     _x, _y, _w, _h = self.frame
@@ -97,6 +109,7 @@ class RackGrid(ui.View):
 
 class MainView(ui.View):
   def __init__(self, *args, **kwargs):
+    print('init')
     ui.View.__init__(self, *args, **kwargs)
     self.bg_color = 'red'
     self.rack = RackGrid()
@@ -104,7 +117,8 @@ class MainView(ui.View):
     self.add_subview(self.rack)
 
   def layout(self):
-    print('hoge')
+    print('lay')
+    #pass
 
 
 if __name__ == '__main__':
