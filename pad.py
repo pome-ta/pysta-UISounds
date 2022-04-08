@@ -29,12 +29,14 @@ class Pad(ui.View):
   def set_up(self, file_path):
     path = f'{file_path}'
     self.name_label.text = path
-    self.note = sound.Player(path)
+    #self.note = sound.Player(path)
+    self.note = path
 
   def touch_began(self, touch):
     # xxx: 色が変わらん
     self.bg_color = self.active_color
-    self.note.play()
+    #self.note.play()
+    sound.play_effect(self.note)
 
   def touch_ended(self, touch):
     #self.bg_color = self.default_color
@@ -78,6 +80,7 @@ class RackGrid(ui.View):
     sound_path_list = get_sound_paths(sound_path)
     for s_path in sound_path_list:
       grid = WrapGrid()
+      grid.alpha = 0.0
       grid.set_pad(s_path)
       self.scroll_view.add_subview(grid)
     # xxx: 同期
@@ -91,11 +94,16 @@ class RackGrid(ui.View):
     self.scroll_view.content_size = (self.width, set_size * height_mult)
 
     for n, sub_view in enumerate(self.scroll_view.subviews):
+      def animation():
+        sub_view.alpha = 1.0
+      ui.animate(animation, duration=0.2)
+      
       set_x = 0 if n % 4 == 0 else set_x
       set_y = int(-(-n / GRID_ROW))
       sub_view.height = sub_view.width = set_size
       sub_view.x = set_size * set_x
       sub_view.y = set_size * set_y
+      
       set_x += 1
 
   def touch_began(self, touch):
@@ -109,6 +117,14 @@ class RootView(ui.View):
     self.rack = RackGrid()
     self.rack.set_grid(sound_path)
     self.add_subview(self.rack)
+    
+    self.all_stop_btn = self.create_btn('iob:stop_32')
+    self.all_stop_btn.action = (lambda sender: sound.stop_all_effects())
+    self.right_button_items = [self.all_stop_btn]
+    
+  def create_btn(self, icon):
+    btn_icon = ui.Image.named(icon)
+    return ui.ButtonItem(image=btn_icon)
 
   def layout(self):
     #print(f'layout_root: {self.frame}')
@@ -118,8 +134,8 @@ class RootView(ui.View):
 if __name__ == '__main__':
   root_str = '/System/Library/Audio/UISounds/'
   root_path = Path(root_str)
-  root = RootView(root_path)
+  root_view = RootView(root_path)
 
-  #root.present(style='fullscreen', orientations=['portrait'])
-  root.present(style='fullscreen')
+  #root_view.present(style='fullscreen', orientations=['portrait'])
+  root_view.present(style='fullscreen')
 
