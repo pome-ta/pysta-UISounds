@@ -4,6 +4,7 @@ import ui
 
 GRID_ROW = 4
 
+
 def get_sound_paths(paths):
   #file_path = paths.iterdir()
   #return [file for file in file_path if not file.is_dir()]
@@ -42,6 +43,7 @@ class Pad(ui.View):
     #self.bg_color = self.default_color
     def animation():
       self.bg_color = self.default_color
+
     ui.animate(animation, duration=0.2)
 
 
@@ -59,14 +61,15 @@ class WrapGrid(ui.View):
   def layout(self):
     self.pad.height = self.height * 0.88
     self.pad.width = self.width * 0.88
-    self.pad.center = self.center
-    
+    self.pad.x = (self.height / 2) - (self.pad.height / 2)
+    self.pad.y = (self.width / 2) - (self.pad.width / 2)
 
 class RackGrid(ui.View):
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.bg_color = 'slategray'
     self.flex = 'WH'
+    
 
     self.scroll_view = ui.ScrollView()
     #self.scroll_view.bounces = 0
@@ -94,10 +97,12 @@ class RackGrid(ui.View):
     self.scroll_view.content_size = (self.width, set_size * height_mult)
 
     for n, sub_view in enumerate(self.scroll_view.subviews):
+
       def animation():
         sub_view.alpha = 1.0
+
       ui.animate(animation, duration=0.2)
-      
+
       set_x = 0 if n % 4 == 0 else set_x
       set_y = int(-(-n / GRID_ROW))
       sub_view.height = sub_view.width = set_size
@@ -117,11 +122,11 @@ class RootView(ui.View):
     self.rack = RackGrid()
     self.rack.set_grid(sound_path)
     self.add_subview(self.rack)
-    
+
     self.all_stop_btn = self.create_btn('iob:stop_32')
     self.all_stop_btn.action = (lambda sender: sound.stop_all_effects())
     self.right_button_items = [self.all_stop_btn]
-    
+
   def create_btn(self, icon):
     btn_icon = ui.Image.named(icon)
     return ui.ButtonItem(image=btn_icon)
