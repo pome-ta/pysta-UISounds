@@ -9,7 +9,8 @@ root_path = Path(root_str)
 all_files = list(root_path.glob('**/*.*'))
 all_sounds = [sound.Player(str(s)) for s in all_files]
 all_names = [
-  str(name).replace(root_str, '').replace('/', ' - ') for name in all_files
+  f'{n: 04}: ' + str(name).replace(root_str, '').replace('/', ' - ')
+  for n, name in enumerate(all_files)
 ]
 
 
@@ -27,7 +28,7 @@ class View(ui.View):
 
   # xxx: ここで作るのもなぁ、、、
   def tableview_did_select(self, tableview, section, row):
-    print(all_files[row])
+    #print(all_files[row])
     all_sounds[row].play()
 
 
