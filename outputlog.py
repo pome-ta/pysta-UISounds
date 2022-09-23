@@ -1,5 +1,7 @@
 # [Pythonista-Issues/sysinfo.py at master · omz/Pythonista-Issues · GitHub](https://github.com/omz/Pythonista-Issues/blob/master/scripts/sysinfo.py)
 
+# wip: コード整理する
+
 import plistlib
 from pathlib import Path
 import os
