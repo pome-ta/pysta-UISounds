@@ -5,7 +5,7 @@
 **System Information**
 
 * Pythonista 3.3 (330025), Default interpreter 3.6.1
-* iOS 16.0, model iPhone12,1, resolution (portrait) 828.0 x 1792.0 @ 2.0
+* iOS 16.0.2, model iPhone12,1, resolution (portrait) 828.0 x 1792.0 @ 2.0
 ```
 
 サウンド一覧
@@ -309,3 +309,4 @@ New
    Typewriters.caf
    Anticipate.caf
 ```
+
