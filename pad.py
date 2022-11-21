@@ -64,12 +64,12 @@ class WrapGrid(ui.View):
     self.pad.x = (self.height / 2) - (self.pad.height / 2)
     self.pad.y = (self.width / 2) - (self.pad.width / 2)
 
+
 class RackGrid(ui.View):
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.bg_color = 'slategray'
     self.flex = 'WH'
-    
 
     self.scroll_view = ui.ScrollView()
     #self.scroll_view.bounces = 0
@@ -108,7 +108,7 @@ class RackGrid(ui.View):
       sub_view.height = sub_view.width = set_size
       sub_view.x = set_size * set_x
       sub_view.y = set_size * set_y
-      
+
       set_x += 1
 
   def touch_began(self, touch):
