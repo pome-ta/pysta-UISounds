@@ -26,7 +26,6 @@ class View(ui.View):
 
     self.add_subview(self.table_view)
 
-  # xxx: ここで作るのもなぁ、、、
   def tableview_did_select(self, tableview, section, row):
     print(all_files[row])
     all_sounds[row].play()
