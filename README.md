@@ -1,9 +1,6 @@
 # pysta-UISounds
 
 ```
-# pysta-UISounds
-
-```
 --- SYSTEM INFORMATION ---
 **System Information**
 
@@ -312,4 +309,5 @@ New
    Typewriters.caf
    Anticipate.caf
 ```
+
 
