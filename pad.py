@@ -14,7 +14,7 @@ def get_sound_paths(paths):
 class Pad(ui.View):
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
-    self.default_color = 'slategray'
+    self.default_color = 'lightsteelblue'
     self.active_color = 'maroon'
     self.bg_color = self.default_color
     self.corner_radius = 8
@@ -27,24 +27,22 @@ class Pad(ui.View):
     self.name_label.flex = 'WH'
     self.add_subview(self.name_label)
 
-  def set_up(self, file_path):
-    path = f'{file_path}'
-    self.name_label.text = path
-    #self.note = sound.Player(path)
-    self.note = path
+  def set_up(self, file_path, parent_index):
+    note_path = f'{file_path}'
+    directly_list = note_path.split('/')
+    note_name_list = directly_list[parent_index:]
+    self.name_label.text = '/'.join(note_name_list)
+    self.note = note_path
 
+  @ui.in_background
   def touch_began(self, touch):
-    # xxx: 色が変わらん
-    self.bg_color = self.active_color
-    #self.note.play()
     sound.play_effect(self.note)
+    self.bg_color = self.active_color
 
-  def touch_ended(self, touch):
-    #self.bg_color = self.default_color
     def animation():
       self.bg_color = self.default_color
 
-    ui.animate(animation, duration=0.2)
+    ui.animate(animation, duration=1.0)
 
 
 class WrapGrid(ui.View):
@@ -55,8 +53,8 @@ class WrapGrid(ui.View):
     self.pad = Pad()
     self.add_subview(self.pad)
 
-  def set_pad(self, file_path):
-    self.pad.set_up(file_path)
+  def set_pad(self, file_path, origin_index):
+    self.pad.set_up(file_path, origin_index)
 
   def layout(self):
     self.pad.height = self.height * 0.88
@@ -79,12 +77,13 @@ class RackGrid(ui.View):
     self.add_subview(self.scroll_view)
 
   @ui.in_background
-  def set_grid(self, sound_path):
-    sound_path_list = get_sound_paths(sound_path)
+  def set_grid(self, origin_path):
+    sound_path_list = get_sound_paths(origin_path)
+    origin_index = len(f'{origin_path}'.split('/'))
     for s_path in sound_path_list:
       grid = WrapGrid()
       grid.alpha = 0.0
-      grid.set_pad(s_path)
+      grid.set_pad(s_path, origin_index)
       self.scroll_view.add_subview(grid)
     # xxx: 同期
     self.layout()
@@ -111,9 +110,6 @@ class RackGrid(ui.View):
 
       set_x += 1
 
-  def touch_began(self, touch):
-    print(self.scroll_view.dragging)
-
 
 class RootView(ui.View):
   def __init__(self, sound_path, *args, **kwargs):
@@ -130,10 +126,6 @@ class RootView(ui.View):
   def create_btn(self, icon):
     btn_icon = ui.Image.named(icon)
     return ui.ButtonItem(image=btn_icon)
-
-  def layout(self):
-    #print(f'layout_root: {self.frame}')
-    pass
 
 
 if __name__ == '__main__':
