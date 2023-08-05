@@ -45,6 +45,8 @@ def outSoundLog():
   root_path = Path(root_str)
 
   all_files = list(root_path.glob('**/*.*'))
+  print(f'file : {len(all_files)}\n\n')
+
   print('```')
   pre_outlog = ''
   for dir_file in all_files:
