@@ -12,6 +12,7 @@ def get_sound_paths(paths):
 
 
 class Pad(ui.View):
+
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.default_color = 'lightsteelblue'
@@ -46,6 +47,7 @@ class Pad(ui.View):
 
 
 class WrapGrid(ui.View):
+
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.border_width = 0.8
@@ -64,6 +66,7 @@ class WrapGrid(ui.View):
 
 
 class RackGrid(ui.View):
+
   def __init__(self, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.bg_color = 'slategray'
@@ -112,6 +115,7 @@ class RackGrid(ui.View):
 
 
 class RootView(ui.View):
+
   def __init__(self, sound_path, *args, **kwargs):
     ui.View.__init__(self, *args, **kwargs)
     self.bg_color = 'maroon'
