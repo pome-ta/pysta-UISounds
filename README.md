@@ -5,12 +5,12 @@
 **System Information**
 
 * Pythonista 3.4 (340012), Default interpreter 3.10.4
-* iOS 18.0, model iPhone12,1, resolution (portrait) 828.0 x 1792.0 @ 2.0
+* iOS 18.2, model iPhone12,1, resolution (portrait) 828.0 x 1792.0 @ 2.0
 ```
 
 サウンド一覧
 
-file : 330
+file : 332
 
 
 ```
@@ -59,6 +59,7 @@ RingerChanged.caf
 navigation_push.caf
 jbl_no_match.caf
 payment_failure.caf
+EarInteraction_Complete.caf
 warsaw.caf
 navigation_pop.caf
 health_notification.caf
@@ -103,6 +104,7 @@ Swish.caf
 payment_success.caf
 jbl_begin_short.caf
 alarm.caf
+RemoteAttentionRequest_Alert.caf
 Modern
    camera_shutter_burst_begin.caf
    camera_shutter_burst_end.caf
@@ -348,5 +350,4 @@ New
    Typewriters.caf
    Anticipate.caf
 ```
-
 
