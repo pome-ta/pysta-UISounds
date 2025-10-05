@@ -5,12 +5,12 @@
 **System Information**
 
 * Pythonista 3.4 (340012), Default interpreter 3.10.4
-* iOS 18.7, model iPhone12,1, resolution (portrait) 828.0 x 1792.0 @ 2.0
+* iOS 26.0.1, model iPhone12,1, resolution (portrait) 828.0 x 1792.0 @ 2.0
 ```
 
 サウンド一覧
 
-file : 332
+file : 337
 
 
 ```
@@ -18,6 +18,7 @@ SIMToolkitNegativeACK.caf
 key_press_delete.caf
 acknowledgment_received.caf
 SIMToolkitPositiveACK.caf
+LiveTranslationStop.caf
 short_double_high.caf
 acknowledgment_sent.caf
 tweet_sent.caf
@@ -55,6 +56,7 @@ middle_9_short_double_low.caf
 focus_change_large.caf
 SentMessage.caf
 sms-received6.caf
+DualBudLongPressFailure.caf
 RingerChanged.caf
 navigation_push.caf
 jbl_no_match.caf
@@ -68,6 +70,7 @@ key_press_modifier.caf
 PaymentReceived.caf
 nfc_scan_failure.caf
 ct-busy.caf
+LiveTranslationStart.caf
 camera_timer_final_second.caf
 PINSubmit_AX.caf
 wheels_of_time.caf
@@ -256,6 +259,7 @@ nano
    Stockholm_Haptic.caf
    3rdParty_DirectionUp_Haptic.caf
    SedentaryTimer_Salient_Haptic.caf
+   SatelliteMessageSent.caf
    SiriStopFailure_Haptic.caf
    Alert_SpartanDisconnected_LowLatency_Haptic.caf
    Ringtone_US_Haptic.caf
@@ -314,6 +318,7 @@ nano
    Preview_AudioAndHaptic.caf
    ct-call-waiting.caf
    DoNotDisturb_Haptic.caf
+   RegattaTimer.caf
    HeadphoneAudioExposureLimitExceeded.caf
    NanoAlert2_Prominent.caf
    WorkoutCompleteAutodetect.caf
