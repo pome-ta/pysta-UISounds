@@ -5,7 +5,7 @@
 **System Information**
 
 * Pythonista 3.4 (340012), Default interpreter 3.10.4
-* iOS 26.1, model iPhone16,1, resolution (portrait) 1179.0 x 2556.0 @ 3.0
+* iOS 26.2, model iPhone16,1, resolution (portrait) 1179.0 x 2556.0 @ 3.0
 ```
 
 サウンド一覧
