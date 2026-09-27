@@ -5,12 +5,12 @@
 **System Information**
 
 * Pythonista 3.4 (340012), Default interpreter 3.10.4
-* iOS 26.6.2, model iPhone16,1, resolution (portrait) 1179.0 x 2556.0 @ 3.0
+* iOS 27.0, model iPhone16,1, resolution (portrait) 1179.0 x 2556.0 @ 3.0
 ```
 
 サウンド一覧
 
-file : 337
+file : 341
 
 
 ```
@@ -48,6 +48,7 @@ keyboard_press_clear.caf
 3rd_party_critical.caf
 sms-received4.caf
 SIMToolkitSMS.caf
+GymKitConnected.caf
 photoShutter.caf
 camera_timer_countdown.caf
 sms-received5.caf
@@ -73,6 +74,7 @@ ct-busy.caf
 LiveTranslationStart.caf
 camera_timer_final_second.caf
 PINSubmit_AX.caf
+GymKitDisconnected.caf
 wheels_of_time.caf
 low_power.caf
 long_low_short_high.caf
@@ -82,6 +84,7 @@ jbl_begin.caf
 short_low_high.caf
 focus_change_keyboard.caf
 jbl_confirm.caf
+GymKitConnecting.caf
 keyboard_press_delete.caf
 connect_power.caf
 focus_change_app_icon.caf
@@ -299,6 +302,7 @@ nano
    PushToTalkUnmute.caf
    jbl_cancel.caf
    OnOffPasscodeUnlock_Haptic.caf
+   call_waiting_tone_low_priority.caf
    TimerWheelMinutesDetent_Haptic.caf
    Alert_ActivityGoalClose_Haptic.caf
    MicUnmute.caf
